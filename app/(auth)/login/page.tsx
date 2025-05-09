@@ -50,7 +50,7 @@ export default function Login() {
           <Button
             label="Login"
             className="w-full"
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/dashboard")}
           ></Button>
         </div>
       </div>

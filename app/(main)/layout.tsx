@@ -1,6 +1,6 @@
 import Layout from "../layout";
-import LeftMenu from "./components/menu/LeftMenu";
-import TopMenu from "./components/menu/TopMenu";
+import LeftMenu from "./components/menu/left/left-menu";
+import TopMenu from "./components/menu/top/top-menu";
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -9,9 +9,13 @@ interface AppLayoutProps {
 export default function MainLayout({ children }: AppLayoutProps) {
   return (
     <Layout>
-      <TopMenu />
-      {children}
-      <LeftMenu />
+      <div className="layout-wrap">
+        <LeftMenu />
+        <div className="play-ground">
+          <TopMenu />
+          {children}
+        </div>
+      </div>
     </Layout>
   );
 }

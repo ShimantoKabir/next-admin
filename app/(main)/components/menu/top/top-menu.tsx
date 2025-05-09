@@ -1,3 +1,5 @@
+import "./top-menu.scss";
+
 export default function TopMenu() {
   return (
     <div className="top-menu">
