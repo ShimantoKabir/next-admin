@@ -2,4 +2,26 @@ div.top-menu {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.02), 0 0 2px rgba(0, 0, 0, 0.05),
     0 1px 4px rgba(0, 0, 0, 0.08);
   height: 5rem;
+
+  > div.menu-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 20px 30px;
+
+    > div.menu-left {
+      > i {
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+
+    > div.menu-right {
+      > i {
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
 }
