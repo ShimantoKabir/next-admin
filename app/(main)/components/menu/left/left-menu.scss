@@ -13,6 +13,13 @@ div.left-menu {
       text-align: center;
     }
   }
+
+  > div.menu-container {
+    > div.menu-wrap {
+      background-color: transparent;
+      border: none;
+    }
+  }
 }
 
 div.left-menu.hide {
