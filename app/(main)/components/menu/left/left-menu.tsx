@@ -1,10 +1,14 @@
 "use client";
+import "./left-menu.scss";
 import useMenuStore from "../menu-store";
 import { MenuService } from "../services/menu.service";
-import "./left-menu.scss";
 import React, { useState, useEffect } from "react";
 import { TreeNode } from "primereact/treenode";
-import { Tree } from "primereact/tree";
+import {
+  Tree,
+  TreeCheckboxSelectionKeys,
+  TreeMultipleSelectionKeys,
+} from "primereact/tree";
 
 export default function LeftMenu() {
   const { isLeftMenuMinimized } = useMenuStore();
@@ -15,20 +19,36 @@ export default function LeftMenu() {
     MenuService.getMenuNodes().then((data) => setNodes(data));
   }, []);
 
-  const onSingleExpand = (e: any) => {
-    const selectedNode: TreeNode | undefined = nodes.find(
-      (n: TreeNode) => n.key === e
-    );
+  const findSelectedNode = (
+    tree: TreeNode[],
+    key: string | TreeMultipleSelectionKeys | TreeCheckboxSelectionKeys | null
+  ): TreeNode | undefined => {
+    for (const node of tree) {
+      if (node.key === key) return node;
+
+      if (node.children) {
+        const found: TreeNode | undefined = findSelectedNode(
+          node.children,
+          key
+        );
+
+        if (found) return found;
+      }
+    }
+    return undefined;
+  };
+
+  const onSingleExpand = (
+    e: string | TreeMultipleSelectionKeys | TreeCheckboxSelectionKeys | null
+  ) => {
+    const selectedNode: TreeNode | undefined = findSelectedNode(nodes, e);
 
     if (selectedNode) {
       const expandState: boolean = !selectedNode.expanded;
-
       selectedNode.expanded = expandState;
-      console.log("expandedKeys=", expandedKeys);
-      const obj = {
+      setExpandedKeys({
         e: expandState,
-      };
-      setExpandedKeys(obj);
+      });
     }
   };
 
