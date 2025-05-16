@@ -17,6 +17,9 @@ export class LoginServiceImp implements LoginService {
         loginRequestDto
       );
 
+      localStorage.setItem("access-token", response.data.accessToken);
+      localStorage.setItem("refresh-token", response.data.refreshToken);
+
       return response.data;
     } catch (error) {
       return error as ErrorResponseDto;

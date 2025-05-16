@@ -1,19 +1,18 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { Button } from "primereact/button";
+import Link from "next/link";
+import React from "react";
 
-export default function Home() {
-  const router = useRouter();
-
+const Home: React.FC = () => {
   return (
     <div className="flex justify-content-center align-items-center min-h-screen min-w-screen flex-column">
       <h3>
         Welcome to PyAdmin. A user, role, and menu management system, to explore
         please!
       </h3>
-      <Button className="mt-2" onClick={(e) => router.replace("/login")}>
+      <Link className="font-bold" href="/login">
         Login
-      </Button>
+      </Link>
     </div>
   );
-}
+};
+
+export default Home;
