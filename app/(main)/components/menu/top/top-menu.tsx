@@ -1,11 +1,16 @@
 "use client";
-import "./top-menu.scss";
-import { Menu } from "primereact/menu";
-import useMenuStore from "../menu-store";
+import "reflect-metadata";
+import { container } from "tsyringe";
 import React, { useRef } from "react";
+import { Menu } from "primereact/menu";
 import { useRouter } from "next/navigation";
+import "@/app/(main)/components/menu/top/top-menu.scss";
+import { useMenuStore } from "@/app/(main)/components/menu/menu-store";
+import { CookieService } from "@/app/utils/cookie/CookieService";
+import { CookieServiceImp } from "@/app/utils/cookie/CookieServiceImp";
 
-export default function TopMenu() {
+const TopMenu = () => {
+  const cookieService = container.resolve<CookieService>(CookieServiceImp);
   const { toggle } = useMenuStore();
   const router = useRouter();
   const accountRef = useRef<Menu>(null);
@@ -18,6 +23,8 @@ export default function TopMenu() {
       label: "Logout",
       icon: "pi pi-sign-out",
       command: () => {
+        cookieService.deleteCookie("access-token");
+        cookieService.deleteCookie("refresh-token");
         router.push("/login");
       },
     },
@@ -47,4 +54,6 @@ export default function TopMenu() {
       </div>
     </div>
   );
-}
+};
+
+export default TopMenu;

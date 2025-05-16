@@ -1,7 +1,7 @@
 "use client";
 import "reflect-metadata";
-import "@/app/(auth)/login/login.scss";
 import React from "react";
+import "@/app/(auth)/login/login.scss";
 import { Button } from "primereact/button";
 import { Password } from "primereact/password";
 import { InputText } from "primereact/inputtext";

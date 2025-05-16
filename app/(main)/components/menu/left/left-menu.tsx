@@ -1,16 +1,16 @@
 "use client";
-import "./left-menu.scss";
-import useMenuStore from "../menu-store";
-import { MenuService } from "../services/menu.service";
-import React, { useState, useEffect } from "react";
 import { TreeNode } from "primereact/treenode";
+import React, { useState, useEffect } from "react";
+import "@/app/(main)/components/menu/left/left-menu.scss";
+import { useMenuStore } from "@/app/(main)/components/menu/menu-store";
+import { MenuService } from "@/app/(main)/components/menu/services/menu.service";
 import {
   Tree,
   TreeCheckboxSelectionKeys,
   TreeMultipleSelectionKeys,
 } from "primereact/tree";
 
-export default function LeftMenu() {
+const LeftMenu = () => {
   const { isLeftMenuMinimized } = useMenuStore();
   const [nodes, setNodes] = useState<TreeNode[]>([]);
   const [expandedKeys, setExpandedKeys] = useState({});
@@ -69,4 +69,6 @@ export default function LeftMenu() {
       </div>
     </div>
   );
-}
+};
+
+export default LeftMenu;

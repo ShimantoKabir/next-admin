@@ -25,4 +25,4 @@ export const useMenuStore = create<LeftMenuStates & LeftMenuActions>()(
   )
 );
 
-export default useMenuStore;
+export default { useMenuStore };
