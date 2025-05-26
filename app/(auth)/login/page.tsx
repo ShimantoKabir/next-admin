@@ -1,6 +1,7 @@
 "use client";
 import "reflect-metadata";
 import React from "react";
+import Link from "next/link";
 import "@/app/(auth)/login/login.scss";
 import { Button } from "primereact/button";
 import { Password } from "primereact/password";
@@ -127,6 +128,7 @@ const login: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             id="email"
             type="email"
+            disabled={loading}
             className="pr-5"
           />
           <Message
@@ -143,6 +145,7 @@ const login: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             toggleMask
+            disabled={loading}
             header={header}
             footer={footer}
           />
@@ -160,6 +163,15 @@ const login: React.FC = () => {
             onClick={() => onLoginClick()}
             loading={loading}
           ></Button>
+        </div>
+        <Divider layout="horizontal" className="hidden md:flex">
+          <b>OR</b>
+        </Divider>
+        <div className="flex flex-column justify-content-center align-item-center w-full">
+          <p className="text-center">Don't have account?</p>
+          <Link className="text-center" href="/registration">
+            Register now
+          </Link>
         </div>
       </div>
     </div>

@@ -16,4 +16,8 @@ div.registration-page {
     padding: 50px;
     border-radius: 10px;
   }
+
+  > div.page-wrap.hide {
+    display: none;
+  }
 }
