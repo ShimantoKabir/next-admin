@@ -15,6 +15,7 @@ import { RegistrationServiceImp } from "./services/registration-imp.service";
 import { RegistrationResponseDto } from "./dtos/registration-response.dto";
 import { ErrorResponseDto } from "@/app/network/error-response.dto";
 import { OtpResponseDto } from "./dtos/otp-response.dto";
+import OtpTimer from "@/app/(main)/components/otp/otp-timer/otp-timer";
 
 export default function Registration() {
   const registrationService = container.resolve<RegistrationServiceImp>(
@@ -214,7 +215,7 @@ export default function Registration() {
             label="Registration"
             className="w-full"
             loading={loading}
-            onClick={() => onRegistrationClick()}
+            onClick={() => setOtpAppearance(true)}
           ></Button>
         </div>
         <Divider layout="horizontal" className="hidden md:flex">
@@ -229,8 +230,12 @@ export default function Registration() {
       </div>
       <div className={otpAppearance ? "page-wrap" : "page-wrap hide"}>
         <div className="flex flex-column gap-1 mb-2">
-          <label className="text-center" htmlFor="otp">
-            OTP
+          <label
+            className="w-full flex justify-content-between align-items-center"
+            htmlFor="otp"
+          >
+            <p className="m-0">OTP</p>
+            <OtpTimer onResendOtp={() => {}} email={email} />
           </label>
           <Divider />
           <InputOtp

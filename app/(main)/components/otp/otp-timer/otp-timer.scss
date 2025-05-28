@@ -1,0 +1,13 @@
+p.otp-timer {
+  > span.hide {
+    display: none;
+  }
+
+  > i {
+    cursor: pointer;
+  }
+
+  > i.hide {
+    display: none;
+  }
+}
