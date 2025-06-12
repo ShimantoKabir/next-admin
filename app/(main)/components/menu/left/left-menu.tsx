@@ -8,12 +8,15 @@ import {
   Tree,
   TreeCheckboxSelectionKeys,
   TreeMultipleSelectionKeys,
+  TreeNodeClickEvent,
 } from "primereact/tree";
+import { useRouter } from "next/navigation";
 
 const LeftMenu = () => {
   const { isLeftMenuMinimized } = useMenuStore();
   const [nodes, setNodes] = useState<TreeNode[]>([]);
   const [expandedKeys, setExpandedKeys] = useState({});
+  const router = useRouter();
 
   useEffect(() => {
     MenuService.getMenuNodes().then((data) => setNodes(data));
@@ -52,6 +55,10 @@ const LeftMenu = () => {
     }
   };
 
+  const onNodeClick = (e: TreeNodeClickEvent) => {
+    router.push(e.node.data.href);
+  };
+
   return (
     <div className={isLeftMenuMinimized ? "hide left-menu" : "left-menu"}>
       <div className="logo">
@@ -65,6 +72,7 @@ const LeftMenu = () => {
           expandedKeys={expandedKeys}
           onToggle={(e) => setExpandedKeys(e.value)}
           onSelectionChange={(e) => onSingleExpand(e.value)}
+          onNodeClick={(e) => onNodeClick(e)}
         />
       </div>
     </div>
