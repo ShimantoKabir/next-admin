@@ -1,16 +1,17 @@
 "use client";
-import "reflect-metadata";
-import { container } from "tsyringe";
 import React, { useRef } from "react";
 import { Menu } from "primereact/menu";
 import { useRouter } from "next/navigation";
 import "@/app/(main)/components/menu/top/top-menu.scss";
 import { useMenuStore } from "@/app/(main)/components/menu/menu-store";
-import { CookieService } from "@/app/utils/cookie/CookieService";
-import { CookieServiceImp } from "@/app/utils/cookie/CookieServiceImp";
+import {
+  CookieService,
+  CookieServiceToken,
+} from "@/app/utils/cookie/CookieService";
+import { container } from "@/app/di";
 
 const TopMenu = () => {
-  const cookieService = container.resolve<CookieService>(CookieServiceImp);
+  const cookieService = container.get<CookieService>(CookieServiceToken);
   const { toggle } = useMenuStore();
   const router = useRouter();
   const accountRef = useRef<Menu>(null);
@@ -18,6 +19,9 @@ const TopMenu = () => {
     {
       label: "Profile",
       icon: "pi pi-user-edit",
+      command: () => {
+        router.push("/profile");
+      },
     },
     {
       label: "Logout",

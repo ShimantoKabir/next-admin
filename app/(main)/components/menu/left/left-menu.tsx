@@ -56,7 +56,7 @@ const LeftMenu = () => {
   };
 
   const onNodeClick = (e: TreeNodeClickEvent) => {
-    router.push(e.node.data.href);
+    e.node.data && e.node.data.href && router.push(e.node.data.href);
   };
 
   return (

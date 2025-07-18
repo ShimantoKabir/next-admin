@@ -1,16 +1,16 @@
-import "reflect-metadata";
 import { LoginRequestDto } from "../dtos/login-request.dto";
 import { LoginResponseDto } from "../dtos/login-response.dto";
 import { LoginService } from "./login.service";
-import { injectable, container } from "tsyringe";
 import { ErrorResponseDto } from "@/app/network/error-response.dto";
 import api from "@/app/network/interceptor";
-import { CookieService } from "@/app/utils/cookie/CookieService";
-import { CookieServiceImp } from "@/app/utils/cookie/CookieServiceImp";
+import {
+  CookieService,
+  CookieServiceToken,
+} from "@/app/utils/cookie/CookieService";
+import { container } from "@/app/di";
 
-@injectable()
 export class LoginServiceImp implements LoginService {
-  cookieService = container.resolve<CookieService>(CookieServiceImp);
+  cookieService = container.get<CookieService>(CookieServiceToken);
 
   onLogin = async (
     loginRequestDto: LoginRequestDto

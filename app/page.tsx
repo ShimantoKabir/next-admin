@@ -8,7 +8,7 @@ const Home: React.FC = () => {
         Welcome to PyAdmin. A user, role, and menu management system, to explore
         please!
       </h3>
-      <Link className="font-bold" href="/login">
+      <Link data-testid="login-link" className="font-bold" href="/login">
         Login
       </Link>
     </div>

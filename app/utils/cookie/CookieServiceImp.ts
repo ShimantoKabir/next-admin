@@ -1,8 +1,5 @@
-import "reflect-metadata";
-import { injectable } from "tsyringe";
 import { CookieService } from "./CookieService";
 
-@injectable()
 export class CookieServiceImp implements CookieService {
   getCookie = (name: string): string | null => {
     let cname = name + "=";

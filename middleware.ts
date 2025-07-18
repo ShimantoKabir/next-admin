@@ -1,9 +1,5 @@
-import "reflect-metadata";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { container } from "tsyringe";
-import { CookieService } from "./app/utils/cookie/CookieService";
-import { CookieServiceImp } from "./app/utils/cookie/CookieServiceImp";
+import { NextRequest } from "next/server";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 export function middleware(request: NextRequest) {
@@ -11,7 +7,6 @@ export function middleware(request: NextRequest) {
   const protectedRoutes: string[] = ["/dashboard", "/profile"];
   const unProtectedRoutes: string[] = ["/", "/login", "/registration"];
 
-  const cookieService = container.resolve<CookieService>(CookieServiceImp);
   console.log("Route middleware executed...!");
 
   const accessTokenCookie: RequestCookie | undefined =

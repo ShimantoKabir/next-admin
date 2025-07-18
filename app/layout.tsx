@@ -1,6 +1,5 @@
 import "./globals.scss";
-import "reflect-metadata";
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";

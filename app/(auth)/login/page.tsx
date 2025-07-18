@@ -1,5 +1,4 @@
 "use client";
-import "reflect-metadata";
 import React from "react";
 import Link from "next/link";
 import "@/app/(auth)/login/login.scss";
@@ -13,12 +12,14 @@ import { Toast } from "primereact/toast";
 import { Message } from "primereact/message";
 import { LoginResponseDto } from "@/app/(auth)/login/dtos/login-response.dto";
 import { container } from "@/app/di";
-import { LoginServiceImp } from "@/app/(auth)/login/services/login-imp.service";
-import { LoginService } from "@/app/(auth)/login/services/login.service";
+import {
+  LoginService,
+  LoginServiceToken,
+} from "@/app/(auth)/login/services/login.service";
 import { ErrorResponseDto } from "@/app/network/error-response.dto";
 
 const login: React.FC = () => {
-  const loginService = container.resolve<LoginService>(LoginServiceImp);
+  const loginService = container.get<LoginService>(LoginServiceToken);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [emailErrorMessage, setEmailErrorMessage] = useState("");

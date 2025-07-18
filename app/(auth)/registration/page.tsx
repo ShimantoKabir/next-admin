@@ -11,15 +11,18 @@ import { Divider } from "primereact/divider";
 import { useRouter } from "next/navigation";
 import { InputOtp } from "primereact/inputotp";
 import { Message } from "primereact/message";
-import { RegistrationServiceImp } from "./services/registration-imp.service";
 import { RegistrationResponseDto } from "./dtos/registration-response.dto";
 import { ErrorResponseDto } from "@/app/network/error-response.dto";
 import { OtpResponseDto } from "./dtos/otp-response.dto";
 import OtpTimer from "@/app/(main)/components/otp/otp-timer/otp-timer";
+import {
+  RegistrationService,
+  RegistrationServiceToken,
+} from "./services/registration.service";
 
 export default function Registration() {
-  const registrationService = container.resolve<RegistrationServiceImp>(
-    RegistrationServiceImp
+  const registrationService = container.get<RegistrationService>(
+    RegistrationServiceToken
   );
 
   const [email, setEmail] = useState<string>("");
